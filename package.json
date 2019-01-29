@@ -1,0 +1,21 @@
+{
+  "name": "heyui-sample",
+  "description": "A heyui project",
+  "version": "1.0.0",
+  "author": "vvpvvp <alias8516@sina.com.cn>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "codemirror": "^5.43.0",
+    "heyui": "^0.16.8",
+    "manba": "^1.2.7",
+    "vue": "^2.5.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {}
+}
