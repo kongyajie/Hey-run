@@ -17,8 +17,12 @@ module.exports = {
       js: './src/js/',
       components: './src/components/',
     },
-    global: {},
-    devServer: {},
+    global: {
+      $: "jquery",
+    },
+    devServer: {
+      historyApiFallback: true
+    },
     externals: {},
     globalVars: './src/css/var.less'
   },
