@@ -9,9 +9,6 @@ module.exports = {
         commons: []
       }
     },
-    commonTrunk: {
-      common: []
-    },
     alias: {
       vue: 'vue/dist/vue.js',
       js: './src/js/',
