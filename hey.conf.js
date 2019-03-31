@@ -23,5 +23,5 @@ module.exports = {
     externals: {},
     globalVars: './src/css/var.less'
   },
-  copy: []
+  copy: ['static/images/*']
 };

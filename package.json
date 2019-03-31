@@ -8,7 +8,7 @@
   "scripts": {},
   "dependencies": {
     "codemirror": "^5.43.0",
-    "heyui": "^1.15.0",
+    "heyui": "^1.17.2",
     "manba": "^1.2.7",
     "vue": "^2.5.11"
   },

@@ -18,3 +18,6 @@ require('codemirror/addon/fold/foldgutter.js')
 require('codemirror/addon/fold/brace-fold.js')
 require('codemirror/addon/fold/comment-fold.js')
 require('codemirror/addon/edit/matchbrackets.js')
+
+// codeMirror样式覆盖
+require('../css/codemirror.less');

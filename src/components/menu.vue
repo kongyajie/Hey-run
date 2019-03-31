@@ -1,11 +1,11 @@
 <template>
   <div class="menu">
     <!-- 菜单 -->
-    <div class="title">{{inlineCollapsed ? 'H' : 'Heyui-run'}}</div>
+    <div class="title" @click="backToHome">{{inlineCollapsed ? 'H' : 'HEYUI RUN'}}</div>
     <div class="menu-demo-1-vue" :style="{width: inlineCollapsed?'70px':'250px'}">
       <Menu
         :datas="data"
-        :className="'h-menu-dark'"
+        className="h-menu-white"
         :inlineCollapsed="inlineCollapsed"
         ref="menu"
         @select="triggerSelect"
@@ -35,7 +35,7 @@ export default {
     };
   },
   created() {
-    this.updateCode(this.data[0]);
+    this.updateCode(this.data[0]); // 默认展示第一个demo
   },
   methods: {
     select(key) {
@@ -51,6 +51,8 @@ export default {
         this.sourcecode = require(`../js/codes/${this.codeUrl}`).default;
         this.$emit('menuChanged',this.sourcecode);
       }
+    },
+    backToHome() {
     }
   }
 };
@@ -60,7 +62,7 @@ export default {
 .menu {
   .title {
     line-height: 60px;
-    font-weight: normal;
+    font-weight: 100;
     font-size: 30px;
     font-family: Dosis,Source Sans Pro,Helvetica Neue,Arial,sans-serif;
     color: #45b984;

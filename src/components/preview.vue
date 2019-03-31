@@ -77,6 +77,7 @@ export default {
           "" !== this.css)
         ) {
           var n = document.createElement("style");
+          (n.rel = "stylesheet/less"),
           (n.type = "text/css"),
             (n.id = this.id),
             (n.innerHTML = this.css),

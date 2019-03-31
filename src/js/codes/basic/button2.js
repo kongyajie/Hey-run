@@ -1,6 +1,6 @@
 const code = 
 `<style lang="less">
-.button1-demo-vue{
+.button2-demo-vue{
   .buttons{
     >.h-btn, >.h-btn-group {
       margin-bottom: 10px;
@@ -10,7 +10,7 @@ const code =
 </style>
 
 <template>
-  <div class="button1-demo-vue">
+  <div class="button2-demo-vue">
     <h4>基本2</h4>
     <div class="buttons">
       <button class="h-btn">默认</button>

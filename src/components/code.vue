@@ -19,53 +19,40 @@ export default {
 	
 	mounted() {
 		this.initCode();
-// 		setTimeout(() => {
-// 			this.setValue(				
-// `<template>
-// 	<div class="test">
-// 			{{ msg }}
-// 	</div>
-// </template>
-
-// <script>
-// export default {
-// 	data () {
-// 		return {
-// 				msg: 'HelloWorld'
-// 		}
-// 	},
-// 	methods: {
-	
-// 	},
-// 	mounted () {
-	
-// 	}
-// }
-// <\/script>
-
-// <style>
-// 	.test {
-// 			color: red;
-// 	}
-// </style>`)
-// 		},100);
-		
 	},
   
   methods: {
 		initCode() {
 			var myCodeMirror = CodeMirror.fromTextArea(document.getElementById("code"), {
-				mode: "htmlmixed", // 支持 vue
-				lineNumbers: true, //显示行号
-				theme: "dracula", //设置主题
-				lineWrapping: true, //代码折叠
+				// mode: "htmlmixed", // 支持 vue
+				// lineNumbers: true, //显示行号
+				// theme: "dracula", //设置主题
+				// lineWrapping: true, //代码折叠
+				// foldGutter: true,
+				// gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+				// matchBrackets: true //括号匹配
+
+				mode: "htmlmixed",
+				lineNumbers: true,
+				// scrollbarStyle: "simple",
+				autoCloseBrackets: true,
+				matchBrackets: true,
+				showCursorWhenSelecting: true,
+				autoCloseTags: true,
+				tabSize: 2,
 				foldGutter: true,
-				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-				matchBrackets: true //括号匹配
-				//readOnly: true,        //只读
+				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", "CodeMirror-lint-markers"],
+				autofocus: true,
+				styleActiveLine: true
 			});
 			// myCodeMirror.setSize("400px", "600px"); //设置代码框的长宽
 
+			// myCodeMirror.setOption("extraKeys", {
+			// 		Tab: function(e) {
+			// 				var t = Array(e.getOption("indentUnit") + 1).join(" ");
+			// 				e.replaceSelection(t)
+			// 		}
+			// })
 			this.myCodeMirror = myCodeMirror;
 		},
 		getValue() {

@@ -2,7 +2,7 @@
   <div id="app" :class="{'collapsed' : inlineCollapsed}">
 
     <!-- 左侧菜单 -->
-    <menuVue class="left" :inlineCollapsed="inlineCollapsed" @menuChanged="menuChanged"></menuVue>
+    <Menu class="left" :inlineCollapsed="inlineCollapsed" @menuChanged="menuChanged"></Menu>
 
     <!-- 右侧内容 -->
     <div class="right">
@@ -16,10 +16,10 @@
       <!-- 主体 -->
       <div class="main">
         <!-- 代码编辑器 -->
-        <codePage ref="codePage"></codePage>
+        <Code ref="codePage"></Code>
 
         <!-- 预览区域 -->
-        <previewPage ref="previewPage" :code="code"></previewPage>
+        <Preview ref="previewPage" :code="code"></Preview>
       </div>
     </div>
     
@@ -28,15 +28,15 @@
 
 <script>
 
-import menuVue from 'components/menu'
-import previewPage from 'components/preview'
-import codePage from 'components/code'
+import Menu from 'components/menu'
+import Preview from 'components/preview'
+import Code from 'components/code'
 
 export default {
   components: {
-    menuVue,
-    previewPage,
-    codePage,
+    Menu,
+    Preview,
+    Code,
   },
   data() {
     return {
@@ -89,7 +89,7 @@ export default {
   position: absolute;
   width: @menu_width;
   height: 100%;
-  background: #333333;
+  background: white;
   z-index: 1;
   transition: 0.2s width cubic-bezier(0.01, 0.71, 0.54, 1);
 }
@@ -129,10 +129,11 @@ export default {
   padding-left: @menu_width;
 }
 .code-vue {
-  flex: 1;
+  width: 50%;
 }
 .preview-vue {
-  flex: 1;
+  width: 50%;
+  overflow: auto;
 }
 .CodeMirror {
   height: 100%;

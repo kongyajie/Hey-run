@@ -1,16 +1,12 @@
 const code = 
 `<style lang="less">
-.button1-demo-vue{
-  .buttons{
-    >.h-btn, >.h-btn-group {
-      margin-bottom: 10px;
-    }
-  }
+.welcome{
+  
 }
 </style>
 
 <template>
-  <div class="button1-demo-vue">
+  <div class="welcome">
     <h4>欢迎</h4>
   </div>
 </template>
