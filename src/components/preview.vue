@@ -8,6 +8,7 @@
 <script>
 
 import Vue from "vue";
+import Less from 'less';
 
 export default {
   props: {
@@ -43,17 +44,20 @@ export default {
           e.slice(e.indexOf(r) + r.length, e.lastIndexOf("</" + t + ">")))
         : "";
     },
-    splitCode: function() {
-      var e = this.getSource(this.code, "script").replace(
-          /export default/,
-          "return "
-        ),
-        t = this.getSource(this.code, "style"),
-        n =
-          '<div id="appShow">' +
-          this.getSource(this.code, "template") +
-          "</div>";
-      (this.js = e), (this.css = t), (this.html = n);
+    splitCode: function(callback) {
+      let e = this.getSource(this.code, "script").replace(/export default/,"return ");
+      let t = this.getSource(this.code, "style");
+      let n = '<div id="appShow">' + this.getSource(this.code, "template") + "</div>";
+
+      Less.render(t, {}).then(output => { // less => css
+        t = output.css;
+
+        this.js = e;
+        this.css = t;
+        this.html = n;
+
+        callback && callback();
+      });
     },
     r(e, t) {
       return (
@@ -67,23 +71,28 @@ export default {
     },
     renderCode: function() {
       this.destroyCode();
-      if ((this.splitCode(), "" !== this.html && "" !== this.js)) {
-        var e = new Function(this.js)();
-        e.template = this.html;
-        var t = Vue.extend(e);
-        if (
-          ((this.component = new t().$mount()),
-          this.$refs.display.appendChild(this.component.$el),
-          "" !== this.css)
-        ) {
-          var n = document.createElement("style");
-          (n.rel = "stylesheet/less"),
-          (n.type = "text/css"),
-            (n.id = this.id),
-            (n.innerHTML = this.css),
-            document.getElementsByTagName("head")[0].appendChild(n);
+      this.splitCode(() => {
+        if (this.html !== "" && this.js !== "") {
+          var vueObj = new Function(this.js)();
+          vueObj.template = this.html;
+          var newVue = Vue.extend(vueObj);
+          this.component = new newVue().$mount();
+          this.$refs.display.appendChild(this.component.$el)
+
+          if (this.css !== "") {
+            let styleDom = document.getElementById('style_test');
+            if(!styleDom) {
+              styleDom = document.createElement("style");
+              styleDom.rel = "stylesheet/less";
+              styleDom.type = "text/css";
+              styleDom.id = 'style_test';
+              document.getElementsByTagName("head")[0].appendChild(styleDom);
+            }
+            styleDom.innerHTML = this.css;
+          }
         }
-      }
+      })
+      
     },
     destroyCode: function() {
       var e = document.getElementById(this.id);
