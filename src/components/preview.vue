@@ -47,7 +47,7 @@ export default {
     splitCode: function(callback) {
       let e = this.getSource(this.code, "script").replace(/export default/,"return ");
       let t = this.getSource(this.code, "style");
-      let n = '<div id="appShow">' + this.getSource(this.code, "template") + "</div>";
+      let n = '<div id="appShow" class="doc">' + this.getSource(this.code, "template") + "</div>";
 
       Less.render(t, {}).then(output => { // less => css
         t = output.css;
@@ -108,6 +108,7 @@ export default {
 
 <style lang="less">
 .preview-vue {
-	padding: 10px;
+  padding: 10px;
+  border-left: 1px solid #eee;
 }
 </style>
