@@ -9,6 +9,7 @@
 
 import Vue from "vue";
 import Less from 'less';
+import vars from '../css/var.js';
 
 export default {
   props: {
@@ -45,16 +46,18 @@ export default {
         : "";
     },
     splitCode: function(callback) {
-      let e = this.getSource(this.code, "script").replace(/export default/,"return ");
-      let t = this.getSource(this.code, "style");
-      let n = '<div id="appShow" class="doc">' + this.getSource(this.code, "template") + "</div>";
+      let js = this.getSource(this.code, "script").replace(/export default/,"return ");
+      let css = this.getSource(this.code, "style");
+      let html = '<div id="appShow" class="doc">' + this.getSource(this.code, "template") + "</div>";
 
-      Less.render(t, {}).then(output => { // less => css
-        t = output.css;
+      Less.render(css, {
+        globalVars: vars
+      }).then(output => { // less => css
+        css = output.css;
 
-        this.js = e;
-        this.css = t;
-        this.html = n;
+        this.js = js;
+        this.css = css;
+        this.html = html;
 
         callback && callback();
       });

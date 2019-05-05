@@ -46,7 +46,15 @@ export default {
   },
 
   mounted() {
-    
+    document.addEventListener("keydown", e => {
+        //可以判断是不是mac，如果是mac,ctrl变为花键
+        //event.preventDefault() 方法阻止元素发生默认的行为。
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
+            // Process event...
+            this.save();
+        }
+    }, false);
   },
   methods: {
     save() {
@@ -57,6 +65,16 @@ export default {
         this.$refs.codePage.setValue(code || '');
         this.save();
       },100)
+    },
+    handleEvent(event) {
+      debugger
+      if(event.keyCode === 83 && event.ctrlKey) {
+        console.log('拦截到ctrl + s');
+        this.save();
+        event.preventDefault();
+        event.returnValue = false;
+        return false;
+      }
     }
   }
 };
